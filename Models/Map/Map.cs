@@ -11,6 +11,7 @@ namespace Snake.Models
         {
             rng = new Random();
             initializeMap();
+            ChangeTile(new MapCoordinate(6, 3), new AppleTile());
         }
 
         private void initializeMap()

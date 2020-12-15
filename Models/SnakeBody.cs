@@ -21,10 +21,17 @@ namespace Snake.Models
             addBody(new MapCoordinate(9, 5));
         }
 
-        private void addHead(MapCoordinate coord)
+        private bool addHead(MapCoordinate coord)
         {
+            bool appleEaten = map.GetTile(coord) is AppleTile;
             snake.AddFirst(coord);
             map.ChangeTile(coord, new HeadTile());
+
+            if (appleEaten)
+            {
+                map.GenerateApple();
+            }
+            return appleEaten;
         }
 
         private void addBody(MapCoordinate coord)
@@ -38,6 +45,7 @@ namespace Snake.Models
             MapCoordinate newHead;
             MapCoordinate currentHead = snake.First.Value;
             MapCoordinate tail = snake.Last.Value;
+
             switch(CurrentDirection)
             {
                 case Direction.Left:
@@ -54,9 +62,13 @@ namespace Snake.Models
                     break;
             }
             map.ChangeTile(currentHead, new BodyTile());
-            addHead(newHead);
+            bool appleEaten = addHead(newHead);
             map.ChangeTile(tail, new BlankTile());
-            snake.RemoveLast();
+
+            if (!appleEaten)
+            {
+                snake.RemoveLast();
+            }
         }
     }
 }

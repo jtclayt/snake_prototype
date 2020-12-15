@@ -9,18 +9,35 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+            int r = 150;
             Map m = new Map();
             SnakeBody s = new SnakeBody(m);
             m.Draw();
-            Thread.Sleep(1000);
+            Thread.Sleep(r);
             s.Move();
             m.GenerateApple();
             m.Draw();
             s.CurrentDirection = Direction.Left;
-            Thread.Sleep(1000);
+            Thread.Sleep(r);
             s.Move();
             m.Draw();
-            Thread.Sleep(1000);
+            Thread.Sleep(r);
+            s.Move();
+            m.Draw();
+            Thread.Sleep(r);
+            s.CurrentDirection = Direction.Down;
+            s.Move();
+            m.Draw();
+            Thread.Sleep(r);
+            s.Move();
+            m.Draw();
+            Thread.Sleep(r);
+            s.Move();
+            m.Draw();
+            Thread.Sleep(r);
+            s.Move();
+            m.Draw();
+            Thread.Sleep(r);
             s.Move();
             m.Draw();
         }
